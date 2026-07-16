@@ -1,410 +1,291 @@
 <div align="center">
 
-# ⚡ DUALBRAIN v4
+<img src="https://img.shields.io/badge/Python-3.12+-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
+<img src="https://img.shields.io/badge/Status-LIVE-e74c3c?style=for-the-badge" alt="Status">
+<img src="https://img.shields.io/badge/License-MIT-2ecc71?style=for-the-badge" alt="License">
+<img src="https://img.shields.io/badge/Strategies-66+-9b59b6?style=for-the-badge" alt="Strategies">
+<img src="https://img.shields.io/badge/Tests-64%2F64%20Pass-27ae60?style=for-the-badge" alt="Tests">
 
-### *Two Minds. One Decision. Zero Hesitation.*
+<br>
+<br>
 
-**An autonomous AI trading system powered by dialectical reasoning — where a creative Explorer and a skeptical Guardian debate every decision before a single pip is risked.**
+# DualBrain
 
-[![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Status](https://img.shields.io/badge/status-LIVE-brightred.svg)](#quick-start)
+### Autonomous AI Trading Engine with Dialectical Reasoning
+
+A trading system where two language models debate every decision — a creative **Explorer** proposes, a skeptical **Guardian** challenges, and only consensus becomes action.
+
+<br>
 
 </div>
 
 ---
 
-## 🧠 What Is This?
+## How It Works
 
-DualBrain is not another "buy when RSI < 30" bot. It's a **dialectical AI architecture** where two specialized language models engage in structured debate before every trading decision:
+DualBrain replaces single-model trading bots with a **dialectical architecture**: two specialized LLMs engage in structured debate before any trade is placed.
 
 ```
-         ┌─────────────────────────────────────────────────┐
-         │                  USER REQUEST                    │
-         └──────────────────────┬──────────────────────────┘
-                                │
-                    ┌───────────┴───────────┐
-                    ▼                       ▼
-            ┌──────────────┐       ┌──────────────┐
-            │   Θ THETA    │       │  Ε EPSILON   │
-            │   Explorer   │◄─────►│   Guardian   │
-            │  (Creative)  │ debate │  (Skeptical) │
-            └──────┬───────┘       └──────┬───────┘
-                   │                      │
-                   └──────────┬───────────┘
-                              ▼
-                    ┌──────────────────┐
-                    │    SYNTHESIS     │
-                    └────────┬─────────┘
-                             ▼
-                    ┌──────────────────┐
-                    │  TOOL EXECUTION  │
-                    └────────┬─────────┘
-                             ▼
-                    ┌──────────────────┐
-                    │   DREAM CYCLE    │
-                    │  (Memory Learn)  │
-                    └──────────────────┘
+         ┌─────────────────────────────────────────┐
+         │            Market Data Input             │
+         └──────────────────┬──────────────────────┘
+                            │
+                ┌───────────┴───────────┐
+                ▼                       ▼
+        ┌──────────────┐       ┌──────────────┐
+        │   Θ THETA    │       │  Ε EPSILON   │
+        │   Explorer   │◄─────►│   Guardian   │
+        │  (Creative)  │ debate │  (Skeptical) │
+        └──────┬───────┘       └──────┬───────┘
+               │                      │
+               └──────────┬───────────┘
+                          ▼
+                ┌──────────────────┐
+                │    SYNTHESIS     │
+                └────────┬─────────┘
+                         ▼
+              ┌─────────────────────┐
+              │  10-Factor Signal   │──► 60%+ consensus required
+              │      Engine         │
+              └────────┬────────────┘
+                       ▼
+              ┌─────────────────────┐
+              │   Risk Validation   │──► 7 safety checks
+              └────────┬────────────┘
+                       ▼
+              ┌─────────────────────┐
+              │   MT5 Execution     │──► ATR-based SL/TP
+              └────────┬────────────┘
+                       ▼
+              ┌─────────────────────┐
+              │   Memory + Alerts   │──► Telegram notifications
+              └─────────────────────┘
 ```
 
-The system then feeds this through a **10-factor signal engine** (RSI, MACD, Bollinger, Stochastic, News Sentiment, Fear & Greed, Economic Calendar, Alpha Signals, Account Risk, SMA Crossover) — requiring **60%+ consensus** before any trade is placed.
+Every trade passes through **three layers**:
 
-**Every trade goes through 3 layers of validation:**
-1. **Signal Engine** — multi-factor technical consensus
-2. **Risk Manager** — 7 safety checks (margin, drawdown, position sizing)
-3. **Dialectical Approval** — Theta and Epsilon debate the trade itself
+| Layer | What It Does | Failure Mode |
+|-------|-------------|--------------|
+| **Signal Engine** | 10-factor technical consensus | No consensus → HOLD |
+| **Risk Manager** | Margin, drawdown, position sizing | Violation → BLOCK |
+| **Dialectical Approval** | Theta ↔ Epsilon debate | Disagreement → REJECT |
 
 ---
 
-## 📁 Architecture
+## Architecture
 
 ```
 dualbrain/
-├── orchestrator.py          # 🧠 Main brain — dialectical cycle engine
-├── theta.py                 # Θ Explorer — creative, divergent, fast
-├── epsilon.py               # Ε Guardian — analytical, skeptical, careful
-├── llm_client.py            # OpenAI-compatible client with model fallback
+├── orchestrator.py          # Core dialectical cycle engine
+├── theta.py                 # Θ Explorer — creative, divergent
+├── epsilon.py               # Ε Guardian — analytical, skeptical
+├── llm_client.py            # OpenAI-compatible client + fallback chain
 ├── memory.py                # TripleMemory — episodic + semantic + procedural
 ├── dream.py                 # DreamEngine — async memory consolidation
 ├── tools.py                 # ToolBox — 38 permission-gated tools
-├── config.py                # All configuration in one place
+├── config.py                # Centralized configuration
 │
-├── autonomous_trader.py     # 🤖 The complete autonomous trading system
-├── signal_engine.py         # 10-factor consensus signal generator
-├── data_feeds.py            # MT5 + TradingView + Web data aggregation
-├── risk_manager.py          # Position sizing & risk validation (in autonomous_trader)
-├── trade_approval.py        # Dialectical trade approval (Theta ↔ Epsilon)
-├── telegram_alerts.py       # Real-time Telegram notifications
-├── market_hours.py          # Trading session detection (XAUUSD hours)
+├── autonomous_trader.py     # Complete autonomous trading loop
+├── signal_engine.py         # 10-factor consensus generator
+├── data_feeds.py            # MT5 + TradingView + Web aggregation
+├── trade_approval.py        # Dialectical trade approval
+├── telegram_alerts.py       # Real-time notifications
+├── market_hours.py          # Trading session detection
 │
-├── strategy_lab.py          # Backtesting engine (10 strategies)
-├── advanced_strategies.py   # 12 additional strategy classes
-├── strategy_v2.py           # 16 V2 strategies (trend, mean-reversion, breakout)
-├── hybrid_strategies.py     # 20 ICT/SMC + traditional hybrids
-├── ict_strategies.py        # 8 institutional-grade ICT/SMC strategies
-├── strategy_expansion.py    # 20 more strategies (32 total from expansion)
-├── param_optimizer.py       # Grid search & composite ranking
-├── research_scheduler.py    # Daily autonomous research (backtest + optimize)
+├── strategy_lab.py          # Backtesting engine
+├── advanced_strategies.py   # 12 strategy classes
+├── strategy_v2.py           # 16 V2 strategies
+├── hybrid_strategies.py     # 20 ICT/SMC hybrids
+├── ict_strategies.py        # 8 institutional ICT/SMC
+├── strategy_expansion.py    # 20 expansion strategies
+├── param_optimizer.py       # Grid search + composite ranking
+├── research_scheduler.py    # Daily autonomous research
 │
-├── tradingview_scraper.py   # TradingView chart data via Playwright
-├── obsidian_bridge.py       # Obsidian vault → TripleMemory integration
-├── mcp_acp.py               # MCP/ACP server for inter-agent communication
+├── tradingview_scraper.py   # TradingView data via Playwright
+├── obsidian_bridge.py       # Obsidian → TripleMemory
+├── mcp_acp.py               # MCP/ACP inter-agent server
 │
-├── main.py                  # 🖥️  CLI interface — REPL, single query, status
-├── test_offline.py          # 64-test offline infrastructure suite
-├── test_smoke.py            # Live smoke test (requires LLM proxy)
+├── main.py                  # CLI — REPL, queries, status
+├── test_offline.py          # 64-test offline suite
+├── test_smoke.py            # Live smoke test
 ├── test_integration.py      # Full integration tests
-├── full_test.py             # Comprehensive test runner
 │
-└── memory/                  # 💾 Triple memory stores
-    ├── episodic/            # What happened (interaction logs)
-    ├── semantic/            # Patterns & connections (Theta's domain)
-    └── procedural/          # Gotchas & workflows (Epsilon's domain)
+└── memory/
+    ├── episodic/            # Interaction logs, trade outcomes
+    ├── semantic/            # Patterns (Theta's domain)
+    └── procedural/          # Gotchas (Epsilon's domain)
 ```
 
 ---
 
-## ⚡ Quick Start
+## Signal Engine
 
-### Prerequisites
+Ten independent factors vote on every candle. A trade requires **60%+ agreement**.
 
-- **Python 3.12+**
-- **OpenCode jailbroken proxy** running on `http://127.0.0.1:5200` (or any OpenAI-compatible endpoint)
-- **MT5 Terminal** with Exness account (for live trading)
+| # | Factor | Source | Weight | Block Rule |
+|---|--------|--------|--------|------------|
+| 1 | RSI(14) | MT5 candles | 1.2x | — |
+| 2 | Bollinger Bands | MT5 candles | 1.0x | — |
+| 3 | SMA Crossover | MT5 candles | 1.0x | — |
+| 4 | MACD | MT5 candles | 1.0x | — |
+| 5 | Stochastic | MT5 candles | 1.0x | — |
+| 6 | Alpha Signals | VibeBridge | 1.0x | — |
+| 7 | News Sentiment | Google News RSS | 1.0x | — |
+| 8 | Fear & Greed | CNN / alt.me / VIX | 1.0x | — |
+| 9 | Economic Calendar | Faireconomy API | 2.0x | HIGH impact → HOLD |
+| 10 | Account Risk | MT5 account | 3.0x | Margin <10% → BLOCK |
 
-### Installation
+Signal strength tiers: **STRONG** (>70%), **MODERATE** (>50%), **WEAK** (<50%).
 
-```bash
-# Clone the repository
-git clone <your-repo-url> dualbrain
-cd dualbrain
+---
 
-# Install dependencies
-pip install httpx numpy pandas
+## The Dialectical Engine
 
-# For backtesting (optional)
-pip install backtesting
+Two models with complementary personalities:
 
-# For browser automation (optional)
-pip install playwright
-playwright install chromium
+| | Theta (Explorer) | Epsilon (Guardian) |
+|---|---|---|
+| **Role** | Generate ideas, spot patterns | Challenge assumptions, find risks |
+| **Temperature** | 0.8 (creative, divergent) | 0.2 (analytical, convergent) |
+| **Style** | "Here's what I see — let's act" | "Here's what's wrong — let's wait" |
+| **Default Model** | mimo-v2.5-free | big-pickle |
 
-# For desktop control (optional)
-pip install pyautogui pyperclip pygetwindow mss
+### Example Debate
+
+```
+Theta:  "RSI oversold at 28, Bollinger below lower band. BUY signal."
+Epsilon: "NFP in 30 minutes. Wait — or reduce size to 0.01 lots."
+
+Theta:  "NFP at 12:30 UTC, it's 11:00 now. We have 90 minutes."
+Epsilon: "Agreed. Enter with tight 1.5x ATR stop loss."
+
+→ CONSENSUS: BUY with reduced position and tight SL
 ```
 
-### Configuration
+Debate stops when:
+- Both models agree (>50% content-word overlap)
+- Max rounds reached (default: 2)
+- Either raises an unresolvable concern
 
-All configuration lives in `dualbrain/config.py`. Key settings:
+---
+
+## Triple Memory System
+
+Every interaction is processed through three memory stores:
+
+| Store | Domain | Content |
+|-------|--------|---------|
+| **Episodic** | What happened | Trade outcomes, conversation logs |
+| **Semantic** | Patterns | Insights extracted by Theta |
+| **Procedural** | Gotchas | Risks and workflows extracted by Epsilon |
+
+After each cycle, the **DreamEngine** runs asynchronously:
+1. Theta scans the interaction → extracts a pattern → writes to semantic memory
+2. Epsilon scans the interaction → extracts a risk → writes to procedural memory
+3. Memories accumulate and influence future decisions
+
+---
+
+## Quick Start
+
+### Requirements
+
+- Python 3.12+
+- OpenAI-compatible LLM endpoint (default: `http://127.0.0.1:5200/v1`)
+- MetaTrader 5 terminal (for live trading)
+
+### Install
+
+```bash
+git clone https://github.com/brah1mhadj/dualbrain.git
+cd dualbrain
+pip install httpx numpy pandas MetaTrader5
+```
+
+### Configure
+
+All settings in `config.py`:
 
 ```python
-# LLM Backend
-LLM_BASE_URL = "http://127.0.0.1:5200/v1"  # OpenCode proxy
-LLM_API_KEY = ""                             # No auth needed for local
-
-# Model Assignment (benchmarked)
-THETA_MODEL = "mimo-v2.5-free"     # Explorer — creative, 10-13s, 1160-1260 chars
-EPSILON_MODEL = "big-pickle"       # Guardian — analytical, 9-13s, up to 1300 chars
-
-# Fallback Chain (tried on failure)
-THETA_MODEL_FALLBACKS = ["nemotron-3-ultra-free", "north-mini-code-free"]
-EPSILON_MODEL_FALLBACKS = ["nemotron-3-ultra-free", "north-mini-code-free"]
-
-# Trading
-MAX_DIALECTICAL_ROUNDS = 2    # Thesis → Antithesis → Synthesis cycles
-MAX_EXECUTION_STEPS = 15      # Max tool calls per execution
+LLM_BASE_URL = "http://127.0.0.1:5200/v1"
+THETA_MODEL  = "mimo-v2.5-free"
+EPSILON_MODEL = "big-pickle"
+MAX_DIALECTICAL_ROUNDS = 2
+MAX_EXECUTION_STEPS = 15
 ```
 
 ### Run
 
 ```bash
 # Interactive REPL
-python dualbrain/main.py
+python main.py
 
 # Single query
-python dualbrain/main.py "What's the current XAUUSD trend?"
+python main.py "What's the current XAUUSD trend?"
 
 # System status
-python dualbrain/main.py --status
-
-# Browse memory
-python dualbrain/main.py --memory
-
-# Run dream cycle
-python dualbrain/main.py --dream
+python main.py --status
 
 # Search memory
-python dualbrain/main.py --search "gold trading"
+python main.py --search "gold trading"
 ```
 
 ---
 
-## 🤖 Autonomous Trading System
-
-The main event. A fully autonomous trading loop that runs every 30 minutes:
-
-### Run Modes
+## Autonomous Trading
 
 ```bash
-# Single scan — analyze and optionally trade
-python dualbrain/autonomous_trader.py --once
+# Single scan
+python autonomous_trader.py --once
 
-# Continuous loop — default 5-minute intervals
-python dualbrain/autonomous_trader.py --loop
+# Continuous loop (default: 5-min intervals)
+python autonomous_trader.py --loop
 
-# Custom interval (every 30 minutes)
-python dualbrain/autonomous_trader.py --loop --interval 1800
-
-# Dry run — analyze but don't trade
-python dualbrain/autonomous_trader.py --once --dry-run
-
-# Research mode — scan GitHub + YouTube for new strategies
-python dualbrain/autonomous_trader.py --research
+# Dry run — analyze, don't trade
+python autonomous_trader.py --once --dry-run
 
 # Custom symbol/timeframe
-python dualbrain/autonomous_trader.py --once --symbol XAUUSD --timeframe H1
+python autonomous_trader.py --once --symbol XAUUSD --timeframe H1
 ```
 
-### Decision Flow (Every Cycle)
+### Decision Flow
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│  1. DATA COLLECTION                                         │
-│     ├── MT5: live quotes, candles, positions, account       │
-│     ├── TradingView: technical analysis summary             │
-│     ├── Web: economic calendar, news sentiment, F&G index   │
-│     └── VibeBridge: custom alpha signals                    │
-├─────────────────────────────────────────────────────────────┤
-│  2. SIGNAL GENERATION (10-Factor Consensus)                 │
-│     ├── RSI(14) ─── BUY if <30, SELL if >70                │
-│     ├── Bollinger ── BUY below lower, SELL above upper      │
-│     ├── SMA Cross ── BUY if price > SMA20 > SMA50          │
-│     ├── MACD ─────── BUY if >0, SELL if <0                 │
-│     ├── Stochastic ─ BUY if K<20, SELL if K>80             │
-│     ├── Alpha Signals from VibeBridge                       │
-│     ├── News Sentiment (keyword scoring)                    │
-│     ├── Fear & Greed (CNN → alternative.me → VIX)           │
-│     ├── Economic Calendar (HIGH impact = PAUSE)             │
-│     └── Account Risk (margin level, drawdown)               │
-├─────────────────────────────────────────────────────────────┤
-│  3. RISK VALIDATION (7 Checks)                              │
-│     ├── ✓ Position count ≤ 3                                │
-│     ├── ✓ Free margin > 30%                                 │
-│     ├── ✓ Not in cooldown                                   │
-│     ├── ✓ Daily loss < 5%                                   │
-│     ├── ✓ Max drawdown < 15%                                │
-│     ├── ✓ Signal strength ≥ MODERATE                        │
-│     └── ✓ No blocking economic event                        │
-├─────────────────────────────────────────────────────────────┤
-│  4. DIALECTICAL TRADE APPROVAL                              │
-│     ├── Theta argues FOR the trade (opportunity, edge)      │
-│     ├── Epsilon argues AGAINST (risk, timing, drawdown)     │
-│     └── → APPROVE / REJECT / MODIFY (resize)               │
-├─────────────────────────────────────────────────────────────┤
-│  5. EXECUTION                                               │
-│     ├── Calculate SL/TP via ATR (1.5x SL, 3x TP)           │
-│     ├── Calculate position size (2% risk per trade)         │
-│     └── Execute on MT5 via order_send()                     │
-├─────────────────────────────────────────────────────────────┤
-│  6. POST-TRADE                                              │
-│     ├── Telegram alert (trade opened/closed)                │
-│     ├── Drawdown monitoring + alerts                        │
-│     └── TripleMemory: record outcome for learning           │
-└─────────────────────────────────────────────────────────────┘
+1. COLLECT    MT5 quotes, TradingView analysis, news, fear index
+2. ANALYZE    10-factor signal engine → consensus score
+3. VALIDATE   7 risk checks (margin, drawdown, position count, cooldown)
+4. DEBATE     Theta ↔ Epsilon structured argument
+5. EXECUTE    ATR-based SL/TP, 2% risk per trade
+6. RECORD     Telegram alert + TripleMemory storage
 ```
+
+### Risk Parameters
+
+| Parameter | Value |
+|-----------|-------|
+| Max drawdown | 15% (auto-stop) |
+| Risk per trade | 2% of balance |
+| Max positions | 3 simultaneous |
+| Daily loss limit | 5% of balance |
+| Position sizing | Fixed fractional (2% risk) |
 
 ---
 
-## 🧠 The Dialectical Engine
+## Strategy Lab
 
-The core innovation: **two AI models debate before every decision**.
+**66+ strategies** across four categories:
 
-### Theta (Explorer)
-- **Model:** mimo-v2.5-free
-- **Temperature:** 0.8 (creative, divergent)
-- **Role:** Generate ideas, propose actions, see patterns
-- **Style:** Direct, concrete proposals, no philosophy
-
-### Epsilon (Guardian)
-- **Model:** big-pickle
-- **Temperature:** 0.2 (analytical, convergent)
-- **Role:** Challenge assumptions, spot risks, ensure quality
-- **Style:** "Here's what's wrong, here's how to fix it"
-
-### Debate Cycle
-
-```
-Round 1:
-  Theta: "I see RSI oversold at 28, BB below lower band. BUY signal."
-  Epsilon: "But there's a HIGH-impact NFP event in 30 minutes. WAIT."
-
-Round 2:
-  Theta: "NFP is at 12:30 UTC, it's 11:00 now. We have 90 minutes."
-  Epsilon: "Agreed — enter with reduced size (0.01 lots) and tight SL."
-
-→ CONSENSUS: BUY with modifications
-```
-
-The system stops debating when:
-- Both agree (convergence threshold > 50% content-word overlap)
-- Maximum rounds reached (2)
-- Either raises an unresolvable concern
-
----
-
-## 💾 Triple Memory System
-
-DualBrain learns from every interaction through three specialized memory stores:
-
-### Episodic Memory (`memory/episodic/`)
-What happened — raw interaction logs, trade outcomes, conversation history.
-
-### Semantic Memory (`memory/semantic/`)
-Patterns and connections — insights extracted by Theta during the dream cycle.
-
-### Procedural Memory (`memory/procedural/`)
-Gotchas and workflows — risks and best practices extracted by Epsilon.
-
-### Dream Cycle
-
-After each dialectical cycle, the DreamEngine runs in the background:
-
-1. **Theta** scans the interaction → extracts a pattern/insight → stores in semantic memory
-2. **Epsilon** scans the interaction → extracts a risk/gotcha → stores in procedural memory
-3. Over time, these memories accumulate and influence future decisions
-
-```python
-# Manual dream run
-python dualbrain/main.py --dream
-
-# Check memory stats
-python dualbrain/main.py --memory
-
-# Search memory
-python dualbrain/main.py --search "RSI strategy"
-```
-
----
-
-## 🔧 Tool System
-
-DualBrain has **38 tools** available to Theta (Explorer) and **17 read-only tools** for Epsilon (Guardian):
-
-### Theta Tools (Full Access)
-| Category | Tools |
-|----------|-------|
-| **File Operations** | `file_read`, `file_write`, `file_list`, `file_delete`, `file_move`, `file_search`, `file_grep`, `file_download` |
-| **System** | `system_info`, `system_processes`, `system_env` |
-| **Web** | `web_get`, `web_search` |
-| **Terminal** | `terminal_run`, `terminal_python` |
-| **Browser** | `browser_open`, `browser_close`, `browser_click`, `browser_type`, `browser_screenshot`, `browser_extract` |
-| **Desktop** | `desktop_screenshot`, `desktop_mouse_move`, `desktop_mouse_click`, `desktop_key_press`, `desktop_type` |
-| **Communication** | `email_send`, `telegram_send` |
-| **Clipboard** | `clipboard_read`, `clipboard_write` |
-| **App/Window** | `app_launch`, `app_kill`, `app_list`, `window_list`, `window_focus`, `window_close` |
-
-### Epsilon Tools (Read-Only)
-| Category | Tools |
-|----------|-------|
-| **File Operations** | `file_read`, `file_list`, `file_search`, `file_grep` |
-| **System** | `system_info`, `system_processes`, `system_env` |
-| **Web** | `web_get`, `web_search` |
-| **Browser** | `browser_screenshot`, `browser_extract` |
-| **Desktop** | `desktop_screenshot` |
-| **Communication** | `email_read` |
-| **Clipboard** | `clipboard_read` |
-| **App/Window** | `app_list`, `window_list` |
-| **Meta** | `list_tools` |
-
----
-
-## 📊 Signal Engine
-
-The 10-factor consensus system that drives all trading decisions:
-
-| # | Factor | Data Source | Weight |
-|---|--------|-------------|--------|
-| 1 | **RSI(14)** | MT5 candles | 1.2× (oversold/overbought) |
-| 2 | **Bollinger Bands** | MT5 candles | 1.0× |
-| 3 | **SMA Crossover** | MT5 candles | 1.0× |
-| 4 | **MACD** | MT5 candles | 1.0× |
-| 5 | **Stochastic** | MT5 candles | 1.0× |
-| 6 | **Alpha Signals** | VibeBridge | 1.0× |
-| 7 | **News Sentiment** | Google News RSS | 1.0× |
-| 8 | **Fear & Greed** | CNN → alt.me → VIX | 1.0× |
-| 9 | **Economic Calendar** | Faireconomy API | 2.0× (HIGH impact = BLOCK) |
-| 10 | **Account Risk** | MT5 account info | 3.0× (margin < 10% = BLOCK) |
-
-**Consensus Requirements:**
-- 60%+ of factors must agree on direction
-- HIGH-impact economic events = automatic HOLD
-- Margin free < 10% = automatic BLOCK
-- Signal strength: STRONG (>70% confidence) / MODERATE (>50%) / WEAK (<50%)
-
----
-
-## 📈 Strategy Lab
-
-**66+ backtested strategies** across 4 categories:
-
-### Traditional (10 + 12 + 16 = 38 strategies)
-RSI Mean Reversion, Bollinger Squeeze, MACD Trend, Dual Thrust, EMA Ribbon, Stochastic RSI, ATR Channel, Heikin-Ashi, Volume Profile, Keltner Channel, Donchian Channel, Ichimoku Cloud, VWAP, Parabolic SAR, ADX, Coppock Curve, Williams %R, Chaikin Money Flow, ROC, Triple EMA + ADX, and more.
-
-### ICT/SMC (8 + 5 = 13 strategies)
-Order Block Reversal, Fair Value Gap, BOS/CHoCH Trend, Liquidity Sweep, Kill Zone Session, Market Structure Shift, Premium/Discount, ICT Confluence, Silver Bullet, Optimal Trade Entry, Institutional Order Flow, Displacement Reversal, Liquidity Void Fill.
-
-### Hybrid/Ensemble (20 strategies)
-FVG + Bollinger, Order Block + RSI, BOS + EMA Ribbon, Liquidity Sweep + MACD, ICT Kill Zone + ATR, Adaptive RSI + OB, Multi-Factor Ensemble, Regime-Adaptive Trend, and more.
-
-### Multi-Timeframe (5 strategies)
-MTF Trend Align, MTF RSI Divergence, MTF Breakout Cascade, MTF Volatility Regime, MTF Structure Sync.
-
-### Backtesting
+| Category | Count | Examples |
+|----------|-------|----------|
+| Traditional | 38 | RSI Mean Reversion, Bollinger Squeeze, MACD Trend, Ichimoku Cloud, VWAP, Parabolic SAR |
+| ICT/SMC | 13 | Order Block, Fair Value Gap, BOS/CHoCH, Liquidity Sweep, Kill Zone |
+| Hybrid/Ensemble | 20 | FVG + Bollinger, OB + RSI, Multi-Factor Ensemble, Regime-Adaptive |
+| Multi-Timeframe | 5 | MTF Trend Align, MTF RSI Divergence, MTF Breakout Cascade |
 
 ```bash
-# Run backtest on XAUUSD H1
+# Backtest all strategies on XAUUSD H1
 python -c "
-from dualbrain.strategy_lab import load_mt5_data, backtest_all
+from strategy_lab import load_mt5_data, backtest_all
 data = load_mt5_data('XAUUSD', 'H1', 5000)
 results = backtest_all(data)
 for name, score in results.ranking[:5]:
@@ -412,192 +293,141 @@ for name, score in results.ranking[:5]:
 "
 
 # Optimize parameters
-python -c "
-from dualbrain.param_optimizer import optimize_all
-report = optimize_all('XAUUSD', 'H1')
-print(report)
-"
+python -c "from param_optimizer import optimize_all; print(optimize_all('XAUUSD', 'H1'))"
 
-# Daily research cycle (backtest + optimize + report)
-python dualbrain/research_scheduler.py
+# Daily research cycle
+python research_scheduler.py
 ```
 
 ---
 
-## 🔔 Telegram Alerts
+## Telegram Alerts
 
-Real-time notifications via QwenPaw's channel system:
+| Alert | Trigger |
+|-------|---------|
+| Trade opened/closed | Every execution |
+| Signal generated | Every analysis cycle |
+| Drawdown warning | >8% drawdown |
+| Drawdown critical | >15% drawdown |
+| Economic event | HIGH impact imminent |
 
-| Alert Type | Trigger |
-|------------|---------|
-| 🟢 `TRADE_OPENED` | Position opened on MT5 |
-| 🔴 `TRADE_CLOSED` | Position closed |
-| 📊 `SIGNAL_GENERATED` | Every signal (even HOLD) |
-| ⚠️ `DRAWDOWN_WARNING` | Drawdown > 8% |
-| 🚨 `DRAWDOWN_CRITICAL` | Drawdown > 15% |
-| 📅 `ECONOMIC_EVENT` | High-impact event imminent |
-| 🔬 `RESEARCH_UPDATE` | New strategy found |
-
-### Rate Limiting
-- Minimum 1 second between alerts
-- Deduplication: same alert type suppressed for 5 minutes
-- Non-blocking: alerts don't halt the trading cycle
+Rate limited (1s minimum) and deduplicated (5min cooldown per type).
 
 ---
 
-## 🧪 Testing
+## Tool System
 
-### Offline Tests (No LLM Required)
+**38 tools** for Theta (full access), **17 read-only** for Epsilon:
 
-```bash
-python dualbrain/test_offline.py
-# 64 tests covering all infrastructure
-```
-
-**Tests include:**
-- Config validation
-- ToolBox permissions + dispatch
-- TripleMemory write/read/search
-- SignalEngine analysis
-- Market hours detection
-- Trade approval (heuristic)
-- Strategy class loading
-- Orchestrator instantiation
-- DreamEngine processing
-- LLMClient configuration
-
-### Live Smoke Test (Requires LLM Proxy)
-
-```bash
-python dualbrain/test_smoke.py
-```
-
-### Full Integration Test
-
-```bash
-python dualbrain/test_integration.py
-```
+| Category | Theta | Epsilon |
+|----------|-------|---------|
+| File operations | read, write, delete, move, search, grep, download | read, search, grep |
+| System | info, processes, env | info, processes, env |
+| Web | get, search | get, search |
+| Terminal | run, python | — |
+| Browser | open, close, click, type, screenshot, extract | screenshot, extract |
+| Desktop | screenshot, mouse, keyboard | screenshot |
+| Communication | email send, telegram send | email read |
+| Clipboard | read, write | read |
+| App/Window | launch, kill, list, focus, close | list |
 
 ---
 
-## 🚀 Deployment
-
-### As a Windows Service (via QwenPaw Cron)
+## Testing
 
 ```bash
-# Register the autonomous trader as a cron job
+# 64 offline tests (no LLM required)
+python test_offline.py
+
+# Live smoke test (requires LLM proxy)
+python test_smoke.py
+
+# Full integration
+python test_integration.py
+```
+
+Coverage: config validation, ToolBox dispatch, TripleMemory CRUD, SignalEngine analysis, market hours, trade approval, strategy loading, DreamEngine processing, LLMClient fallbacks.
+
+---
+
+## Deployment
+
+### Background Process
+
+```bash
+start /B python autonomous_trader.py --loop --interval 1800 --log-level INFO
+```
+
+### Scheduled (QwenPaw Cron)
+
+```bash
 qwenpaw cron create \
   --name "autonomous-trader" \
   --schedule "*/30 * * * *" \
-  --command "python dualbrain/autonomous_trader.py --once" \
+  --command "python autonomous_trader.py --once" \
   --agent-id evilagent
-```
-
-### As a Background Process
-
-```bash
-# Start the autonomous loop
-start /B python dualbrain/autonomous_trader.py --loop --interval 1800 --log-level INFO
 ```
 
 ### Monitoring
 
 ```bash
-# Check logs
 tail -f autonomous_trader.log
-
-# Check state
-cat autonomous_trader_state.json | python -m json.tool
-
-# Check memory
-python dualbrain/main.py --memory
+python main.py --memory
 ```
 
 ---
 
-## ⚠️ Risk Warnings
+## Dependencies
 
-**This system trades real money on a live MT5 account.**
-
-- **Drawdown limit:** 15% — system auto-stops if exceeded
-- **Risk per trade:** 2% of account balance
-- **Max positions:** 3 simultaneous
-- **Daily loss limit:** 5% of balance
-- **All trades are logged** to TripleMemory for post-mortem analysis
-- **Telegram alerts** fire on every trade and drawdown warning
-- **Dialectical approval** adds a second AI opinion before execution
-
-**Never deploy more capital than you can afford to lose.**
+| Package | Required | Purpose |
+|---------|----------|---------|
+| `httpx` | Yes | HTTP client for LLM + APIs |
+| `numpy` | Yes | Strategy calculations |
+| `pandas` | Yes | Data manipulation |
+| `MetaTrader5` | Yes | Live trading |
+| `backtesting` | Optional | Strategy backtesting |
+| `playwright` | Optional | TradingView scraping |
 
 ---
 
-## 🛠️ Dependencies
+## Model Benchmarking
 
-### Required
-```
-httpx          # HTTP client for LLM + web APIs
-```
+Benchmarked 2026-07-15 across creative, analytical, and fast queries:
 
-### Optional (for full functionality)
-```
-MetaTrader5    # MT5 Python API (live trading)
-numpy          # Strategy calculations
-pandas         # Data manipulation
-backtesting    # Strategy backtesting
-playwright     # TradingView scraping
-pyautogui      # Desktop automation
-pyperclip      # Clipboard access
-pygetwindow    # Window management
-mss            # Desktop screenshots
-```
+| Model | Speed | Quality | Reliability | Role |
+|-------|-------|---------|-------------|------|
+| **mimo-v2.5-free** | 10-13s | Excellent | 5/5 | Theta (Explorer) |
+| **big-pickle** | 9-13s | Very Good | 4/5 | Epsilon (Guardian) |
+| nemotron-3-ultra-free | 3-8s | Good | 5/5 | Fallback |
+| north-mini-code-free | 4-6s | Good | 5/5 | Fallback |
 
 ---
 
-## 📋 Configuration Reference
-
-All settings in `dualbrain/config.py`:
+## Configuration Reference
 
 | Setting | Default | Description |
 |---------|---------|-------------|
-| `LLM_BASE_URL` | `http://127.0.0.1:5200/v1` | OpenAI-compatible API endpoint |
+| `LLM_BASE_URL` | `http://127.0.0.1:5200/v1` | API endpoint |
 | `THETA_MODEL` | `mimo-v2.5-free` | Explorer model |
 | `EPSILON_MODEL` | `big-pickle` | Guardian model |
-| `THETA_TEMPERATURE` | `0.8` | Explorer creativity (higher = more creative) |
-| `EPSILON_TEMPERATURE` | `0.2` | Guardian skepticism (lower = more critical) |
-| `MAX_DIALECTICAL_ROUNDS` | `2` | Debate cycles before forced synthesis |
-| `MAX_EXECUTION_STEPS` | `15` | Max tool calls per execution phase |
-| `CONVERGENCE_THRESHOLD` | `0.50` | Content-word overlap to consider converged |
-| `EPISODIC_DIR` | `dualbrain/memory/episodic` | Interaction logs |
-| `SEMANTIC_DIR` | `dualbrain/memory/semantic` | Patterns & insights |
-| `PROCEDURAL_DIR` | `dualbrain/memory/procedural` | Gotchas & workflows |
-
----
-
-## 🧬 Model Benchmarking
-
-Models were benchmarked on 2026-07-15 across creative, analytical, and fast query types:
-
-| Model | Speed | Output Quality | Reliability | Role |
-|-------|-------|---------------|-------------|------|
-| **mimo-v2.5-free** | 10-13s | ⭐⭐⭐⭐⭐ Richest output, most specific | 5/5 | Theta (Explorer) |
-| **big-pickle** | 9-13s | ⭐⭐⭐⭐ Creative + analytical | 4/5 | Epsilon (Guardian) |
-| nemotron-3-ultra-free | 3-8s | ⭐⭐⭐ Decent quality | 5/5 | Fallback |
-| north-mini-code-free | 4-6s | ⭐⭐⭐ Fast, reasonable | 5/5 | Fallback |
-| deepseek-v4-flash-free | — | ❌ 100% empty responses | 0/5 | Rejected |
-| hy3-free | — | ❌ 100% empty responses | 0/5 | Rejected |
-
----
-
-## 📜 License
-
-MIT License — use freely, trade responsibly.
+| `THETA_TEMPERATURE` | `0.8` | Explorer creativity |
+| `EPSILON_TEMPERATURE` | `0.2` | Guardian skepticism |
+| `MAX_DIALECTICAL_ROUNDS` | `2` | Debate cycles |
+| `MAX_EXECUTION_STEPS` | `15` | Max tool calls |
+| `CONVERGENCE_THRESHOLD` | `0.50` | Agreement threshold |
 
 ---
 
 <div align="center">
 
-**Built with ❤️ by Hadj**
+**Built by [Hadj](https://github.com/brah1mhadj)**
 
-*Two minds are better than one. Three layers of validation are better than two.*
+*Two minds. One decision. Zero hesitation.*
+
+<br>
+
+<img src="https://img.shields.io/badge/Exness-MT5-1a73e8?style=for-the-badge&logo=chartline&logoColor=white" alt="MT5">
+<img src="https://img.shields.io/badge/LLM-OpenAI%20Compatible-412991?style=for-the-badge&logo=openai&logoColor=white" alt="LLM">
+<img src="https://img.shields.io/badge/Platform-Windows-0078d4?style=for-the-badge&logo=windows&logoColor=white" alt="Windows">
 
 </div>
